@@ -2,6 +2,10 @@ add_executable(test_region test_region.cpp)
 target_link_libraries(test_region PRIVATE GPUMemoryService gms_warnings)
 add_test(NAME region COMMAND test_region)
 
+add_executable(test_protocol test_protocol.cpp)
+target_link_libraries(test_protocol PRIVATE GPUMemoryService gms_warnings)
+add_test(NAME protocol COMMAND test_protocol)
+
 add_executable(test_governed test_governed.cpp)
 target_link_libraries(test_governed PRIVATE GPUMemoryService gms_warnings)
 add_test(NAME governed COMMAND test_governed)

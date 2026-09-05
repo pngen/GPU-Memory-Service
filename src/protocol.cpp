@@ -34,7 +34,10 @@ bool take_str(const std::vector<std::uint8_t>& b, std::size_t& p, std::string& v
   std::uint32_t n = 0; if (!take_u32(b, p, n)) return false;
   if (n > kMaxFrame) return false;
   if (p + n > b.size()) return false;
-  v.assign(reinterpret_cast<const char*>(&b[p]), n); p += n; return true;
+  // Use data()+p (not &b[p]) so an empty payload tail (n==0, p==size()) does not
+  // index past the end of the vector with vector::operator[] (MSVC Debug STL
+  // bounds-checks operator[] and aborts on p == size()).
+  v.assign(reinterpret_cast<const char*>(b.data() + p), n); p += n; return true;
 }
 
 std::vector<std::uint8_t> encode(Msg type, const std::vector<std::uint8_t>& payload) {
