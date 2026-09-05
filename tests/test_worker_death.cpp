@@ -52,7 +52,9 @@ int main(int argc, char** argv) {
   auto allocate = [&](std::uint64_t id, std::uint64_t gen, std::uint64_t bytes, int& status) {
     std::vector<std::uint8_t> p; append_u64(p, id); append_u64(p, gen); append_u64(p, bytes);
     send_frame(ctl, Msg::ALLOCATE, p);
-    Frame r; if (!recv_frame(ctl, r) || r.type != Msg::ALLOCATE_RESULT) { status = -999; return false; }
+    Frame r; const bool got = recv_frame(ctl, r);
+    if (!got) { status = -999; return false; }
+    if (r.type != Msg::ALLOCATE_RESULT) { std::printf("CTL ALLOC wrong type=%d\n", (int)r.type); std::fflush(stdout); status = -999; return false; }
     std::size_t pp=0; std::uint64_t a=0,b=0; std::uint32_t st=0; std::string e; take_u64(r.payload,pp,a); take_u64(r.payload,pp,b); take_u32(r.payload,pp,st); take_str(r.payload,pp,e);
     status = static_cast<int>(st); return true;
   };
