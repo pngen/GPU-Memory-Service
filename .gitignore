@@ -1,0 +1,25 @@
+# Build output
+build/
+build_*/
+out/
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+
+# Test/example artifacts
+*.bin
+gms_persist_test.bin
+gms_recovery_example.bin
+
+# Editor / OS
+*.user
+*.suo
+.vscode/
+.vs/
+.DS_Store
+Thumbs.db
+
+# Scratch
+_scratch/
