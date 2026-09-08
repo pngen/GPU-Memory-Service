@@ -1,0 +1,16 @@
+GPU Memory Service
+
+Copyright 2026 Summon Software Labs
+
+GPU Memory Service is an open-source, vendor-neutral runtime for governing GPU and fabric memory allocation, residency, fragmentation, and authoritative capacity accounting.
+
+This product is licensed under the Apache License, Version 2.0. See the
+LICENSE file in this distribution for the full license text.
+
+GPU Memory Service does not collect or transmit any telemetry. All telemetry is
+written to local files chosen by the operator and never leaves the machine
+running the software.
+
+GPU Memory Service accepts contributions from individuals and organizations on the
+terms of the Apache License 2.0 without requiring a Contributor License
+Agreement (CLA). See CONTRIBUTING.md for contribution guidance.
